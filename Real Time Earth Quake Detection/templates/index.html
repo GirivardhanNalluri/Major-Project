@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthquake Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">EarthQuake Detection</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="register">Register</a>
+                <a href="login">Login</a>
+            </div>
+        </div>
+    </nav>
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Real-Time Earthquake Detection System</h1>
+            <p>Advanced IoT technology and LSTM networks for early warning and intensity forecasting of seismic events</p>
+            <a href="login" class="cta-button" style="text-decoration: none;">View Live Dashboard</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="feature-card">
+                <h3>Real-Time Detection</h3>
+                <p>Instant detection and alerts using IoT-based seismic sensors for immediate response</p>
+            </div>
+            <div class="feature-card">
+                <h3>LSTM Forecasting</h3>
+                <p>Advanced time series analysis using LSTM networks to predict earthquake intensity</p>
+            </div>
+            <div class="feature-card">
+                <h3>Early Warning System</h3>
+                <p>Immediate alerts and notifications to enhance public safety and disaster preparedness</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+<div class="footer-title">
+        <h2>Dhanekula Institute of Engineering & Technology<br></h2>
+        
+        <h2 style="font-family: Calibri, sans-serif;  color: pink;">    Department of Computer Science & Engineering</h2>
+    </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>We are dedicated to developing cutting-edge technology for earthquake detection and prediction to save lives and minimize damage.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="dashboard">Live Dashboard</a></p>
+                <p><a href="#features">Features</a></p>
+                <p><a href="register">Register</a></p>
+                <p><a href="login">Login</a></p>
+            </div>
+            <div class="footer-section">
+    		<div class="footer-column">
+        		<h2>Project Done By:</h2>
+        		<p>NALLURI GIRIVARDHAN(218T1A05A9)<br>
+        		R.LAHARI(218T1A05B2)<br>
+        		G.GIRIJA BHAVANI(218T1A0582)<br>
+        		H.URUTHIKA(218T1A0583)</p>
+    		</div>
+            </div>
+    <div class="footer-column1">
+        <h2>Under the guidence of</h2>
+        <p>Dr. M.TANOOJ KUMAR<br>
+       <a href="mailto:mtanooj@gmail.com" style="text-decoration: none;">mtanooj@gmail.com</a><br>
+(PROFESSOR and EXAM CELL HEAD)</p>
+    </div>
+    <div class="footer-column">
+        <h4>Contact Info</h4>
+        <p>Email: <a href="mailto:girivardhan2301@gmail.com" style="text-decoration: none;">girivardhan2301@gmail.com</a></p>
+        <p>Phone: +91 7032112301</p>
+        <p>Address: 123 Seismic Street, Earth City</p>
+    </div>
+
+
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Earthquake Detection System. All rights reserved.</p>
+            
+        </div>
+    </footer>
+{% endblock %}
+
+</body>
+</html>

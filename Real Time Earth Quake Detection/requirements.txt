@@ -1,0 +1,8 @@
+python -- 3.11
+Flask == 3.1.0
+Flask_mysqldb == 2.0.0
+tensorflow == 2.18.0
+Flask-Mail == 0.10.0
+PySerials == 0.0.0.dev61	
+keras == 3.8.0
+numpy == 2.0.2

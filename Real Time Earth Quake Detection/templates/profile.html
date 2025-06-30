@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthquake Detection - My Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css')}}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">Earthquake Detection</div>
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard') }}">Home</a>
+            <a href="{{ url_for('predication') }}">Predication</a>
+            <div class="profile-dropdown">
+                <a href="#">Profile</a>
+                <div class="profile-dropdown-content">
+                    <a href="{{ url_for('profile') }}">View Profile</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+<div class="profile-card">
+        <img src="../static/images/user.png" alt="Profile Picture" class="profile-image">
+        <h2>{{ user[1] }}</h2>
+        <p class="user-id">User ID: {{ user[0] }}</p>
+        <p class="user-email">Phone Number: {{ user[3] }}</p>
+        <p class="user-email">Email: {{ user[2] }}</p>
+
+    </div>
+</body>
+</html>

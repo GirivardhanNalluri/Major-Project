@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthquake Monitor</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+        .left-panel {
+            flex: 0 0 30%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .right-panel {
+            flex: 0 0 70%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .normal { background-color: #90EE90; }
+        .earthquake {
+            background-color: #FFB6C1;
+            animation: blink 1s infinite;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .data-table th {
+            background-color: #f5f5f5;
+        }
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Earthquake Detection</div>
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard') }}">Home</a>
+            <a href="{{ url_for('predication') }}">Forecast</a>
+            <div class="profile-dropdown">
+                <a href="#">Profile</a>
+                <div class="profile-dropdown-content">
+                    <a href="{{ url_for('profile') }}">View Profile</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Real-time Data</h2>
+            <div id="status" class="status normal">Status: Normal</div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>Z</th>
+                        <th>Mag</th>
+                    </tr>
+                </thead>
+                <tbody id="data-tbody"></tbody>
+            </table>
+        </div>
+
+        <div class="right-panel">
+            <div class="chart-container">
+                <canvas id="accelerometerChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="magnitudeChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let accelerometerChart = new Chart(
+            document.getElementById('accelerometerChart'),
+            {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: 'X-Axis',
+                            data: [],
+                            borderColor: 'red',
+                            fill: false
+                        },
+                        {
+                            label: 'Y-Axis',
+                            data: [],
+                            borderColor: 'blue',
+                            fill: false
+                        },
+                        {
+                            label: 'Z-Axis',
+                            data: [],
+                            borderColor: 'green',
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            }
+        );
+
+        let magnitudeChart = new Chart(
+            document.getElementById('magnitudeChart'),
+            {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Magnitude',
+                        data: [],
+                        borderColor: 'purple',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }
+        );
+
+        function updateCharts() {
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => {
+                    // Update status
+                    const statusDiv = document.getElementById('status');
+                    statusDiv.textContent = `Status: ${data.status}`;
+                    statusDiv.className = `status ${data.status.toLowerCase()}`;
+
+                    // Update table
+                    const tbody = document.getElementById('data-tbody');
+                    tbody.innerHTML = ''; // Clear existing rows
+
+                    // Add latest 10 readings
+                    const displayCount = Math.min(10, data.timestamp.length);
+                    for (let i = data.timestamp.length - displayCount; i < data.timestamp.length; i++) {
+                        const row = tbody.insertRow(0);
+                        row.insertCell(0).textContent = data.timestamp[i];
+                        row.insertCell(1).textContent = data.x_values[i];
+                        row.insertCell(2).textContent = data.y_values[i];
+                        row.insertCell(3).textContent = data.z_values[i];
+                        row.insertCell(4).textContent = data.magnitude[i];
+                    }
+
+                    // Update charts
+                    accelerometerChart.data.labels = data.timestamp;
+                    accelerometerChart.data.datasets[0].data = data.x_values;
+                    accelerometerChart.data.datasets[1].data = data.y_values;
+                    accelerometerChart.data.datasets[2].data = data.z_values;
+                    accelerometerChart.update();
+
+                    magnitudeChart.data.labels = data.timestamp;
+                    magnitudeChart.data.datasets[0].data = data.magnitude;
+                    magnitudeChart.update();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        setInterval(updateCharts, 500);
+    </script>
+</body>
+</html>

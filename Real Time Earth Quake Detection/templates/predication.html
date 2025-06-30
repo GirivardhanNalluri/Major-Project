@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthquake Monitor</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            margin: auto;
+            padding: 20px;
+            position: relative;
+        }
+        .status-panel {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: rgba(245, 245, 245, 0.9);
+            font-size: 1.2em;
+            z-index: 1000;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            min-width: 200px;
+        }
+        .status-normal {
+            color: green;
+            border-left: 4px solid green;
+        }
+        .status-minor {
+            color: #f0ad4e;
+            border-left: 4px solid #f0ad4e;
+        }
+        .status-moderate {
+            color: #ff8c00;
+            border-left: 4px solid #ff8c00;
+        }
+        .status-severe {
+            color: red;
+            border-left: 4px solid red;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Earthquake Detection</div>
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard') }}">Home</a>
+            <a href="{{ url_for('predication') }}">Predication</a>
+            <div class="profile-dropdown">
+                <a href="#">Profile</a>
+                <div class="profile-dropdown-content">
+                    <a href="{{ url_for('profile') }}">View Profile</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="status-panel" id="earthquakeStatus"></div>
+        <canvas id="earthquakeChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('earthquakeChart').getContext('2d');
+        const statusDiv = document.getElementById('earthquakeStatus');
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [
+                    {
+                        label: 'Real-time Magnitude',
+                        data: [],
+                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        tension: 0.1,
+                        pointRadius: 2,
+                        borderWidth: 2,
+                    },
+                    {
+                        label: 'LSTM Forecast',
+                        data: [],
+                        borderColor: 'rgb(54, 162, 235)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderDash: [5, 5],
+                        tension: 0.1,
+                        pointRadius: 1,
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        min: 0,
+                        max: 15,
+                        title: {
+                            display: true,
+                            text: 'Magnitude'
+                        },
+                        ticks: {
+                            stepSize: 0.5
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        },
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Earthquake Magnitude and LSTM Forecast',
+                        padding: {
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.parsed.y.toFixed(2)}`;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                        align: 'start',
+                        labels: {
+                            boxWidth: 20,
+                            padding: 20
+                        }
+                    }
+                }
+            }
+        });
+
+        function getStatusClass(status) {
+            switch(status.toLowerCase()) {
+                case 'severe earthquake': return 'status-severe';
+                case 'moderate earthquake': return 'status-moderate';
+                case 'minor earthquake': return 'status-minor';
+                default: return 'status-normal';
+            }
+        }
+
+        function updateChart() {
+            fetch('/predict_data')
+                .then(response => response.json())
+                .then(data => {
+                    // Create real-time data array
+                    const realTimeData = data.magnitudes.map((mag, i) => ({
+                        x: data.timestamps[i],
+                        y: mag
+                    }));
+
+                    // Create forecast data array
+                    const forecastData = data.forecast_magnitudes.map((mag, i) => ({
+                        x: data.all_timestamps[i],
+                        y: mag
+                    }));
+
+                    // Update chart
+                    chart.data.labels = [...data.timestamps, ...data.all_timestamps];
+                    chart.data.datasets[0].data = realTimeData;
+                    chart.data.datasets[1].data = forecastData;
+
+                    chart.update('none');
+
+                    // Update status panel
+                    const lastMagnitude = data.magnitudes[data.magnitudes.length - 1] || 0;
+                    const statusClass = getStatusClass(data.status);
+                    statusDiv.className = `status-panel ${statusClass}`;
+                    statusDiv.innerHTML = `
+                        <strong>Current Status:</strong> ${data.status}<br>
+                        <strong>Current Magnitude:</strong> ${lastMagnitude.toFixed(2)}<br>
+                        <strong>Forecast Range:</strong> ${Math.min(...data.forecast_magnitudes).toFixed(2)} -
+                        ${Math.max(...data.forecast_magnitudes).toFixed(2)}
+                    `;
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Set chart height
+        ctx.canvas.parentNode.style.height = '700px';
+
+        // Update every 100ms for smoother real-time display
+        setInterval(updateChart, 1000);
+    </script>
+</body>
+</html>
