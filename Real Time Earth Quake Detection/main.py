@@ -20,7 +20,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_PORT'] = 3306  # MySQL username
 app.config['MYSQL_USER'] = 'root'  # MySQL username
-app.config['MYSQL_PASSWORD'] = 'GirI!2329'  # MySQL password
+app.config['MYSQL_PASSWORD'] = ' '  # MySQL password
 app.config['MYSQL_DB'] = 'earth_quake_detection'  # MySQL database name
 
 mysql = MySQL(app)
@@ -31,16 +31,16 @@ app.secret_key = 'eq@123'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'girivardhan2301@gmail.com'  # Replace with your email
-app.config['MAIL_PASSWORD'] = 'zfif hnof xpkc etzc'        # Replace with your email password
-app.config['MAIL_DEFAULT_SENDER'] = 'girivardhan2301@gmail.com'  # Default sender email
+app.config['MAIL_USERNAME'] = 'yourmail@gmail.com'  # Replace with your email
+app.config['MAIL_PASSWORD'] = ' '        # Replace with your email password
+app.config['MAIL_DEFAULT_SENDER'] = ' '  # Default sender email
 
 mail = Mail(app)
 
 # 🔹 Twilio Configuration (Replace with your Twilio credentials)
-TWILIO_ACCOUNT_SID = "AC66a6a6db8198fdfbf79d409916ae6bdb"
-TWILIO_AUTH_TOKEN = "f78f95ffa62cea5a2c3b8caa54864f32"
-TWILIO_PHONE_NUMBER = "+18142564991"
+TWILIO_ACCOUNT_SID = " " #Your Twilio account sid
+TWILIO_AUTH_TOKEN = " " # Your Twilio Account Auth Token
+TWILIO_PHONE_NUMBER = " " #Your Twilio Phone Number
 
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
