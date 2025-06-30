@@ -14,11 +14,7 @@ This is the official repository for our B.Tech Major Project developed by Batch-
 
 ```
 Batch-08/
-├── Abstract.pdf
 ├── Base_Paper.pdf
-├── Batch-08 Final_review.pptx
-├── Batch-08 _ Thesis Report.pdf
-├── PUBLICATION.PDF
 ├── User_Manual.pdf
 ├── requirements.txt
 ├── Code/
@@ -77,26 +73,28 @@ Batch-08/
 
 ## 🛠️ Technologies Used
 
-- **Frontend:** HTML, CSS
+- **Frontend:** HTML, CSS, Js
 - **Backend:** Python, Flask
-- **ML Frameworks:** TensorFlow / Keras
+- **Database:** MySQL
+- **ML Frameworks:** TensorFlow , Keras , Pandas , Numpy , Scikit-Learn
 - **IoT:** Arduino, ADXL335
 - **Deployment:** Localhost (for testing)
-
+- **IDE:** Arduino IDE, PyCharm
+  
 ## 📚 Documentation
 
 All key documents are available in the root folder:
-- 📄 `Abstract.pdf`
-- 📝 `Thesis Report.pdf`
 - 🎓 `Base_Paper.pdf`
-- 📽️ `Final_review.pptx`
 - 🧾 `User_Manual.pdf`
 
 ## 👨‍💻 Authors
 
-- B.Tech Final Year Students – **Batch-08**
-- Under the guidance of [Faculty Name]
+- B.Tech Final Year Students – **Batch-08 (NALLURI GIRIVARDHAN)**
+- Under the guidance of [M. TANOOJ KUMAR]
 
 ## 📬 Contact
 
 For any queries or collaborations, feel free to reach out via GitHub issues or university email.
+📧 **Email:** girivardhan2301@gmail.com 
+🔗 [LinkedIn](https://www.linkedin.com/in/girivardhan-nalluri-215341267/)
+
