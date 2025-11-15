@@ -92,6 +92,9 @@ All key documents are available in the root folder:
 - B.Tech Final Year Students – **Batch-08 (NALLURI GIRIVARDHAN)**
 - Under the guidance of [M. TANOOJ KUMAR]
 
+Published Paper
+[Paper] (https://www.scilit.com/publications/575b54c1b824b23efd858ef580477e57)
+
 ## 📬 Contact
 
 For any queries or collaborations, feel free to reach out via GitHub issues or university email.
