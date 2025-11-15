@@ -1,6 +1,3 @@
-Here is your project README with the **publication paper included as a proper clickable redirect link**, formatted cleanly in Markdown.
-You can copy-paste this directly into your GitHub README.md.
-
 ---
 
 ## 🌍 Real-Time Earthquake Detection and Intensity Forecasting System
@@ -50,8 +47,8 @@ Batch-08/
 ### 1️⃣ Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/earthquake-detection.git
-cd earthquake-detection/Batch-08/Code/Software
+git clone https://github.com/GirivardhanNalluri/Major-Project.git
+cd Major-Project/Batch-08/Code/Software
 ```
 
 ### 2️⃣ Create a virtual environment:
@@ -123,11 +120,8 @@ Under the guidance of **M. TANOOJ KUMAR**
 
 ## 📬 Contact
 
-📧 Email: **[girivardhan2301@gmail.com](mailto:girivardhan2301@gmail.com)**
-🔗 LinkedIn: *[Nalluri Girivardhan](https://www.linkedin.com/in/girivardhan-nalluri-215341267)*
-💬 For issues or collaboration: **GitHub Issues**
+*📧 Email: **[girivardhan2301@gmail.com](mailto:girivardhan2301@gmail.com)**
+*🔗 LinkedIn: *[Nalluri Girivardhan](https://www.linkedin.com/in/girivardhan-nalluri-215341267)*
+*💬 For issues or collaboration: **GitHub Issues**
 
 ---
-
-
-Just tell me!
