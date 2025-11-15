@@ -110,18 +110,18 @@ python main.py
 
 ---
 
-## 👨‍💻 Authors
+👨‍💻 Authors
 
-**B.Tech Final Year Students – Batch-08**
-**NALLURI GIRIVARDHAN**
-Under the guidance of **M. TANOOJ KUMAR**
+B.Tech Final Year Students – Batch-08
+NALLURI GIRIVARDHAN
+Under the guidance of M. TANOOJ KUMAR
 
 ---
 
-## 📬 Contact
+📬 Contact
 
-*📧 Email: **[girivardhan2301@gmail.com](mailto:girivardhan2301@gmail.com)**
-*🔗 LinkedIn: *[Nalluri Girivardhan](https://www.linkedin.com/in/girivardhan-nalluri-215341267)*
-*💬 For issues or collaboration: **GitHub Issues**
+📧 Email: girivardhan2301@gmail.com
+
+🔗 LinkedIn: [Nalluri Girivardhan](https://www.linkedin.com/in/girivardhan-nalluri-215341267)
 
 ---
