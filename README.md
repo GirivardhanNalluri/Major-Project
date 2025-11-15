@@ -1,14 +1,23 @@
-# 🌍 Real-Time Earthquake Detection and Intensity Forecasting System
+Here is your project README with the **publication paper included as a proper clickable redirect link**, formatted cleanly in Markdown.
+You can copy-paste this directly into your GitHub README.md.
 
-This is the official repository for our B.Tech Major Project developed by Batch-08. The system leverages IoT technology and machine learning models to detect seismic activity in real time and predict earthquake intensity. It combines hardware (Arduino + sensors) and software (Python + LSTM) to provide an early warning interface.
+---
+
+## 🌍 Real-Time Earthquake Detection and Intensity Forecasting System
+
+This is the official repository for our **B.Tech Major Project (Batch-08)**. The system leverages IoT technology and machine learning models to detect seismic activity in real time and forecast earthquake intensity using LSTM deep learning models.
+
+---
 
 ## 📌 Project Features
 
-- 🔧 **IoT-based real-time data collection** using an Arduino and accelerometer.
-- 📈 **Machine Learning prediction** using LSTM for forecasting seismic intensity.
-- 🌐 **Web-based dashboard** for monitoring alerts, graphs, and reports.
-- 🔔 **Alert system** via email/SMS when abnormal activity is detected.
-- 📊 Visual insights from model performance graphs and historical data.
+* 🔧 **IoT-based real-time seismic data collection** using Arduino + ADXL335 accelerometer
+* 📈 **Machine Learning (LSTM)** model for intensity prediction
+* 🌐 **Web dashboard** for visualization and alerts
+* 🔔 **Email/SMS alert system** for abnormal readings
+* 📊 **Data visualization**, model performance graphs & history
+
+---
 
 ## 🗂️ Project Structure
 
@@ -19,85 +28,106 @@ Batch-08/
 ├── requirements.txt
 ├── Code/
 │   ├── Hardware/
-│   │   └── Earth_quake.ino        # Arduino sketch
+│   │   └── Earth_quake.ino
 │   └── Software/
-│       ├── main.py                # Main app
-│       ├── alerts.py              # Alert logic
-│       ├── device.py              # Device interface
-│       ├── model_training.py      # Model training
-│       ├── predication.py         # Prediction script
-│       ├── earthquake.csv         # Sample dataset
-│       ├── *.h5                   # Trained ML models
-│       ├── templates/             # HTML templates
+│       ├── main.py
+│       ├── alerts.py
+│       ├── device.py
+│       ├── model_training.py
+│       ├── predication.py
+│       ├── earthquake.csv
+│       ├── *.h5
+│       ├── templates/
 │       └── static/
 │           ├── css/
 │           └── images/
 ```
 
+---
+
 ## ⚙️ Setup Instructions
 
-1. **Clone this repository:**
-   ```bash
-   git clone https://github.com/your-username/earthquake-detection.git
-   cd earthquake-detection/Batch-08/Code/Software
-   ```
+### 1️⃣ Clone the repository:
 
-2. **Create a virtual environment:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate   # On Windows: venv\Scripts\activate
-   ```
+```bash
+git clone https://github.com/your-username/earthquake-detection.git
+cd earthquake-detection/Batch-08/Code/Software
+```
 
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 2️⃣ Create a virtual environment:
 
-4. **Run the application:**
-   ```bash
-   python main.py
-   ```
+```bash
+python -m venv venv
+source venv/bin/activate      # Windows: venv\Scripts\activate
+```
+
+### 3️⃣ Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4️⃣ Run the application:
+
+```bash
+python main.py
+```
+
+---
 
 ## 🖥️ Hardware Setup
 
-- Arduino UNO
-- ADXL335 accelerometer sensor
-- USB serial communication with PC
-- Sketch: `Earth_quake.ino` (upload via Arduino IDE)
+* Arduino UNO
+* ADXL335 Accelerometer
+* USB Serial Communication
+* Arduino Sketch: **Earth_quake.ino**
+
+---
 
 ## 🤖 Machine Learning Model
 
-- Model: **LSTM (Long Short-Term Memory)**
-- Trained on time-series earthquake data
-- Stored in `earthquake_lstm_model.h5` and `lstm_model.h5`
+* Model: **LSTM (Long Short-Term Memory)**
+* Files: `earthquake_lstm_model.h5`, `lstm_model.h5`
+* Trained on time-series seismic data
+
+---
 
 ## 🛠️ Technologies Used
 
-- **Frontend:** HTML, CSS, Js
-- **Backend:** Python, Flask
-- **Database:** MySQL
-- **ML Frameworks:** TensorFlow , Keras , Pandas , Numpy , Scikit-Learn
-- **IoT:** Arduino, ADXL335
-- **Deployment:** Localhost (for testing)
-- **IDE:** Arduino IDE, PyCharm
-  
+* **Frontend:** HTML, CSS, JavaScript
+* **Backend:** Python, Flask
+* **Database:** MySQL
+* **ML:** TensorFlow, Keras, NumPy, Pandas, Scikit-learn
+* **IoT:** Arduino + ADXL335
+* **Deployment:** Localhost
+
+---
+
 ## 📚 Documentation
 
-All key documents are available in the root folder:
-- 🎓 `Base_Paper.pdf`
-- 🧾 `User_Manual.pdf`
+* 🎓 **[Base Paper](./Base_Paper.pdf)**
+* 🧾 **[User Manual](./User_Manual.pdf)**
+* 📝 **Published Research Paper:**
+  👉 **[Click to view the Publication Paper](https://www.scilit.com/publications/575b54c1b824b23efd858ef580477e57)**
+
+
+---
 
 ## 👨‍💻 Authors
 
-- B.Tech Final Year Students – **Batch-08 (NALLURI GIRIVARDHAN)**
-- Under the guidance of [M. TANOOJ KUMAR]
+**B.Tech Final Year Students – Batch-08**
+**NALLURI GIRIVARDHAN**
+Under the guidance of **M. TANOOJ KUMAR**
 
-Published Paper
-[Paper] (https://www.scilit.com/publications/575b54c1b824b23efd858ef580477e57)
+---
 
 ## 📬 Contact
 
-For any queries or collaborations, feel free to reach out via GitHub issues or university email.
-📧 **Email:** girivardhan2301@gmail.com 
-🔗 [LinkedIn](https://www.linkedin.com/in/girivardhan-nalluri-215341267/)
+📧 Email: **[girivardhan2301@gmail.com](mailto:girivardhan2301@gmail.com)**
+🔗 LinkedIn: *[Nalluri Girivardhan](https://www.linkedin.com/in/girivardhan-nalluri-215341267)*
+💬 For issues or collaboration: **GitHub Issues**
 
+---
+
+
+Just tell me!
